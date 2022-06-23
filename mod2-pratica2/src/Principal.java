@@ -4,6 +4,7 @@ import java.util.List;
 
 public class Principal {
     static List<HashMap> lista = new ArrayList<HashMap>();
+    static int ultimaMatricula = 0;
     public static void main(String[] args) {
         novoParticipante("felipe", "ticiani", 27, "48999290167", "nao", "O+", 1, "1");
         novoParticipante("maria", "silva", 17, "48999290167", "nao", "O+", 3, "1");
@@ -22,7 +23,9 @@ public class Principal {
             System.out.println("Valor: " + participante.get("valor"));
             System.out.println();
         }
-        removerParticipante(1);
+        removerParticipante(0);
+        novoParticipante("aaaa", "lopes", 16, "48999290167", "nao", "O+", 1, "1");
+        System.out.println(lista);
     }
 
     public static boolean novoParticipante(String nome, String sobrenome, int idade, String celular, String numEmergencia, String grupoSanguineo, int categoria, String rg) {
@@ -54,9 +57,10 @@ public class Principal {
             participante.put("numEmergencia", numEmergencia);
             participante.put("grupoSanguineo", grupoSanguineo);
             participante.put("categoria", "" + categoria);
-            participante.put("matricula", "" + (lista.size() + 1));
+            participante.put("matricula", "" + (ultimaMatricula + 1));
             participante.put("rg", rg);
             lista.add(participante);
+            ultimaMatricula++;
             return true;
         }
     }
