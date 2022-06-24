@@ -1,72 +1,37 @@
 package mod2pratica2;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 public class Principal {
-    static List<HashMap> lista = new ArrayList<HashMap>();
-    static int ultimaMatricula = 0;
+
     public static void main(String[] args) {
-        novoParticipante("felipe", "ticiani", 27, "48999290167", "nao", "O+", 1, "1");
-        novoParticipante("maria", "silva", 17, "48999290167", "nao", "O+", 3, "1");
-        novoParticipante("fernanda", "lopes", 16, "48999290167", "nao", "O+", 1, "1");
-
-        for (HashMap participante : lista) {
-            System.out.println("Matrícula: " + participante.get("matricula"));
-            System.out.println("Nome: " + participante.get("nome"));
-            System.out.println("Sobrenome: " + participante.get("sobrenome"));
-            System.out.println("Idade: " + participante.get("idade"));
-            System.out.println("RG: " + participante.get("rg"));
-            System.out.println("Celular: " + participante.get("celular"));
-            System.out.println("Número de emergência: " + participante.get("numEmergencia"));
-            System.out.println("Grupo Sanguíneo: " + participante.get("grupoSanguineo"));
-            System.out.println("Categoria: " + participante.get("categoria"));
-            System.out.println("Valor: " + participante.get("valor"));
-            System.out.println();
-        }
-        removerParticipante(0);
-        novoParticipante("aaaa", "lopes", 16, "48999290167", "nao", "O+", 1, "1");
-        System.out.println(lista);
-    }
-
-    public static boolean novoParticipante(String nome, String sobrenome, int idade, String celular, String numEmergencia, String grupoSanguineo, int categoria, String rg) {
-        if(idade < 18 && categoria == 3) {
-            return false;
-        } else {
-            HashMap<String, String> participante = new HashMap<>();
-            if (categoria == 1) {
-                if (idade < 18) {
-                    participante.put("valor", "R$ 1.300");
-                } else {
-                    participante.put("valor", "R$ 1.500");
-                }
-            }
-            if (categoria == 2) {
-                if (idade < 18) {
-                    participante.put("valor", "R$ 2.000");
-                } else {
-                    participante.put("valor", "R$ 2.300");
-                }
-            }
-            if (categoria == 3) {
-                participante.put("valor", "R$ 2.300");
-            }
-            participante.put("nome", nome);
-            participante.put("sobrenome", sobrenome);
-            participante.put("idade", "" + idade);
-            participante.put("celular", celular);
-            participante.put("numEmergencia", numEmergencia);
-            participante.put("grupoSanguineo", grupoSanguineo);
-            participante.put("categoria", "" + categoria);
-            participante.put("matricula", "" + (ultimaMatricula + 1));
-            participante.put("rg", rg);
-            lista.add(participante);
+        ArrayList<Participante> lista = new ArrayList<>();
+        int ultimaMatricula = 0;
+        int opcao;
+        do {
+            String nome = javax.swing.JOptionPane.showInputDialog("Digite o nome do participante.");
+            String sobrenome = javax.swing.JOptionPane.showInputDialog("Digite o sobrenome do participante.");
+            int idade = Integer.parseInt(javax.swing.JOptionPane.showInputDialog("Digite a idade do participante."));
+            String rg = javax.swing.JOptionPane.showInputDialog("Digite o RG do participante.");
+            String celular = javax.swing.JOptionPane.showInputDialog("Digite o celular do participante.");
+            String numEmergencia = javax.swing.JOptionPane.showInputDialog("Digite o número de emergência do participante.");
+            String grupoSanguineo = javax.swing.JOptionPane.showInputDialog("Digite o grupo sanguíneo do participante.");
+            int categoria = Integer.parseInt(javax.swing.JOptionPane.showInputDialog("Digite a categoria do participante." +
+                    "1 - Circuito Pequeno | 2 - Circuito Médio | 3 - Circuito Avançado"));
             ultimaMatricula++;
-            return true;
+            Participante participante = new Participante(nome, sobrenome, celular, numEmergencia, grupoSanguineo, rg, idade, categoria, ultimaMatricula);
+            lista.add(participante);
+            opcao = Integer.parseInt(javax.swing.JOptionPane.showInputDialog("Digite qualquer valor para sair ou 1 para cadastrar um novo participante."));
+        } while (opcao == 1);
+
+        for (Participante participante : lista) {
+            System.out.println(participante);
         }
-    }
-    public static void removerParticipante(int matricula) {
-        lista.remove(matricula);
+
+        lista.remove(0);
+
+        for (Participante participante : lista) {
+            System.out.println(participante);
+        }
     }
 }
