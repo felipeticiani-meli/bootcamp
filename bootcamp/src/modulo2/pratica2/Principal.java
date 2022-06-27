@@ -1,4 +1,4 @@
-package mod2pratica2;
+package modulo2.pratica2;
 
 import java.util.ArrayList;
 

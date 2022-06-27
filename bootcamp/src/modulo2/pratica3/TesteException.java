@@ -1,4 +1,4 @@
-package mod2pratica3;
+package modulo2.pratica3;
 
 public class TesteException {
     public static void main(String[] args) {

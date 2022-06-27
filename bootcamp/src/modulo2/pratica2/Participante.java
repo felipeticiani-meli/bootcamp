@@ -1,4 +1,4 @@
-package mod2pratica2;
+package modulo2.pratica2;
 
 public class Participante {
     private String nome, sobrenome, celular, numEmergencia, grupoSanguineo, rg;
