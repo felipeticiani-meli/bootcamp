@@ -11,9 +11,4 @@ public class Cachorro extends Animal implements Carnivoros {
         System.out.println("Cachorro está comendo carne.");
     }
 
-    @Override
-    public void comerAnimal(Animal animal) {
-        System.out.println("Cachorro está comendo " + animal.getClass().getSimpleName());
-    }
-
 }

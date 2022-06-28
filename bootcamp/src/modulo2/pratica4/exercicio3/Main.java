@@ -9,12 +9,10 @@ public class Main {
         Gato gato = new Gato();
         gato.emitirSom();
         gato.comerCarne();
-        gato.comerAnimal(vaca);
 
         Cachorro cachorro = new Cachorro();
         cachorro.emitirSom();
         cachorro.comerCarne();
-        cachorro.comerAnimal(vaca);
 
 
     }
