@@ -1,16 +1,22 @@
 package modulo2.pratica6.model;
 
-import java.util.List;
+import modulo2.pratica6.util.ListaDeItens;
+
+import java.util.ArrayList;
 
 public class Fatura {
     private Cliente cliente;
-    private List<Item> itens;
+    private ListaDeItens itens;
     private double valorTotal;
 
-    public Fatura(Cliente cliente, List<Item> itens) {
+    public Fatura(Cliente cliente, ListaDeItens itens) {
         this.cliente = cliente;
         this.itens = itens;
-        this.setValorTotal(itens.stream().mapToDouble((a) -> a.getValorUnitario()).sum());
+        double valor = 0;
+        for (Item item : itens.consultarTodos()) {
+            valor += item.getValorUnitario() * item.getQuantidade();
+        }
+        this.setValorTotal(valor);
     }
 
     public Cliente getCliente() {
@@ -21,11 +27,11 @@ public class Fatura {
         this.cliente = cliente;
     }
 
-    public List<Item> getItens() {
+    public ListaDeItens getItens() {
         return itens;
     }
 
-    public void setItens(List<Item> itens) {
+    public void setItens(ListaDeItens itens) {
         this.itens = itens;
     }
 
