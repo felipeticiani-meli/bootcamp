@@ -1,6 +1,6 @@
 package modulo2.pratica3;
 
-public class NaoPereciveis extends Produto{
+public class NaoPereciveis extends Produto {
     private String tipo;
 
     public String getTipo() {

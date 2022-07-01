@@ -6,7 +6,7 @@ public class Participante {
     private double valor;
 
     public Participante(String nome, String sobrenome, String celular, String numEmergencia, String grupoSanguineo, String rg, int idade, int categoria, int matricula) {
-        if(!(idade < 18) && !(categoria == 3)) {
+        if (!(idade < 18) && !(categoria == 3)) {
             if (categoria == 1) {
                 if (idade < 18) {
                     this.valor = 1300;
