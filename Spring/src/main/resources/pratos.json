@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Calabaza con cebolla",
+    "ingredients": [
+      {
+        "name": "Calabaza",
+        "calories": 24
+      },
+      {
+        "name": "Cebolla",
+        "calories": 47
+      }
+    ]
+  },
+  {
+    "name": "Calabaza con cebolla",
+    "ingredients": [
+      {
+        "name": "Calabaza",
+        "calories": 24
+      },
+      {
+        "name": "Cebolla",
+        "calories": 47
+      }
+    ]
+  }
+]
