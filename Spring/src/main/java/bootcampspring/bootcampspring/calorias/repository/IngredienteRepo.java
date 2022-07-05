@@ -1,5 +1,6 @@
 package bootcampspring.bootcampspring.calorias.repository;
 
+import bootcampspring.bootcampspring.calorias.exception.NotFoundException;
 import bootcampspring.bootcampspring.calorias.model.Ingrediente;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Repository;
@@ -19,10 +20,14 @@ public class IngredienteRepo implements Dao<Ingrediente> {
         List<Ingrediente> lista = null;
         try {
             lista = Arrays.asList(mapper.readValue(new File(fileAddress), Ingrediente[].class));
+            return lista;
         } catch(Exception err) {
             System.out.println("Erro no getAll.");
         }
-        return lista;
+        if (lista != null) {
+            return lista;
+        }
+        throw new NotFoundException("Nenhum ingrediente encontrado.");
     }
 
     @Override
@@ -33,7 +38,7 @@ public class IngredienteRepo implements Dao<Ingrediente> {
                 return ingrediente;
             }
         }
-        return null;
+        throw new NotFoundException("Ingrediente não encontrado com o nome " + name + ".");
     }
 
     @Override
@@ -42,6 +47,10 @@ public class IngredienteRepo implements Dao<Ingrediente> {
         return lista
                 .stream()
                 .filter(i -> i.getName().toLowerCase().contains(name.toLowerCase()))
-                .collect(Collectors.toList());
+                .collect(Collectors.collectingAndThen(Collectors.toList(), result -> {
+                    if (result.isEmpty())
+                        throw new NotFoundException("Nenhum ingrediente encontrato com o nome " + name + ".");
+                    return result;
+                }));
     }
 }

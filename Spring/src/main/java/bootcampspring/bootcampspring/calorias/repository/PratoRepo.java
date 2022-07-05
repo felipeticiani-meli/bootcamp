@@ -1,5 +1,6 @@
 package bootcampspring.bootcampspring.calorias.repository;
 
+import bootcampspring.bootcampspring.calorias.exception.NotFoundException;
 import bootcampspring.bootcampspring.calorias.model.Ingrediente;
 import bootcampspring.bootcampspring.calorias.model.Prato;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,13 +20,13 @@ public class PratoRepo implements Dao<Prato>{
     @Override
     public List<Prato> getAll() {
         ObjectMapper mapper = new ObjectMapper();
-        List<Prato> lista = null;
         try {
-            lista = Arrays.asList(mapper.readValue(new File(fileAddress), Prato[].class));
+            List<Prato> lista = Arrays.asList(mapper.readValue(new File(fileAddress), Prato[].class));
+            return lista;
         } catch(Exception err) {
             System.out.println("Erro no getAll.");
         }
-        return lista;
+        throw new NotFoundException("Nenhum prato encontrado.");
     }
 
     @Override
@@ -36,7 +37,7 @@ public class PratoRepo implements Dao<Prato>{
                 return prato;
             }
         }
-        return null;
+        throw new NotFoundException("Prato não encontrado com o nome " + name + ".");
     }
 
     @Override
@@ -45,7 +46,11 @@ public class PratoRepo implements Dao<Prato>{
         return lista
                 .stream()
                 .filter(p -> p.getName().toLowerCase().contains(name.toLowerCase()))
-                .collect(Collectors.toList());
+                .collect(Collectors.collectingAndThen(Collectors.toList(), result -> {
+                    if (result.isEmpty())
+                        throw new NotFoundException("Nenhum prato encontrato com o nome " + name + ".");
+                    return result;
+                }));
     }
 
     public String getTotalCalories(String name) {

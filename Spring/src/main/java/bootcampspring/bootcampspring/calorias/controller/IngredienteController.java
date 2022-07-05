@@ -25,18 +25,12 @@ public class IngredienteController {
 
     @GetMapping("/{name}")
     public ResponseEntity<Ingrediente> getIngrediente(@PathVariable String name) {
-        Ingrediente ingrediente = ingredienteRepo.getFirstByName(name);
-        if (ingrediente != null)
-            return ResponseEntity.ok(ingrediente);
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(ingredienteRepo.getFirstByName(name));
     }
 
     @GetMapping("/all/{name}")
     public ResponseEntity<List<Ingrediente>> getListaIngrediente(@PathVariable String name) {
-        List<Ingrediente> lista = ingredienteRepo.getListByName(name);
-        if (lista != null)
-            return ResponseEntity.ok(lista);
-        return ResponseEntity.notFound().build();
+        return ResponseEntity.ok(ingredienteRepo.getListByName(name));
     }
 
 }
