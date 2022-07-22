@@ -36,4 +36,15 @@ public class JewelController {
             return ResponseEntity.ok(foundJewel.get());
         return ResponseEntity.notFound().build();
     }
+
+    @DeleteMapping("/jewel/delete")
+    public ResponseEntity<Void> deleteJewel(@RequestParam Long id) {
+        Optional<Jewel> foundJewel = service.getById(id);
+
+        if (foundJewel.isPresent()) {
+            service.deleteJewel(id);
+            return ResponseEntity.noContent().build();
+        }
+        return ResponseEntity.notFound().build();
+    }
 }

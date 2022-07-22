@@ -33,5 +33,13 @@ public class JewelService implements IJewelService {
         return repo.findById(id);
     }
 
+    @Override
+    public void deleteJewel(Long id) {
+        if (repo.findById(id).isPresent())
+            repo.deleteById(id);
+
+        // TODO: throw exception when not found
+    }
+
 
 }
