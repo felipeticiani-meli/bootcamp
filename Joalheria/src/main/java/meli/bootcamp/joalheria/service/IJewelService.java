@@ -10,4 +10,5 @@ public interface IJewelService {
     List<Jewel> getAllJewels();
     Optional<Jewel> getById(Long id);
     void deleteJewel(Long id);
+    Jewel updateJewel(Jewel jewel);
 }

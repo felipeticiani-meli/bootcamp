@@ -47,4 +47,15 @@ public class JewelController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @PutMapping("/jewel/update")
+    public ResponseEntity<Jewel> updateJewel(@RequestBody Jewel jewel) {
+        Optional<Jewel> foundJewel = service.getById(jewel.getId());
+
+        if (foundJewel.isPresent()) {
+            service.updateJewel(jewel);
+            return ResponseEntity.ok(jewel);
+        }
+        return ResponseEntity.notFound().build();
+    }
 }

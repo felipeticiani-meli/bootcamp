@@ -41,5 +41,13 @@ public class JewelService implements IJewelService {
         // TODO: throw exception when not found
     }
 
+    @Override
+    public Jewel updateJewel(Jewel jewel) {
+        Optional<Jewel> foundJewel = repo.findById(jewel.getId());
+        if (foundJewel.isPresent())
+            repo.save(jewel);
+        return null; // TODO: throw exception
+    }
+
 
 }
