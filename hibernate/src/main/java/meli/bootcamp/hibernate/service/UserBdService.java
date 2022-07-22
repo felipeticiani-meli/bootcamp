@@ -5,6 +5,7 @@ import meli.bootcamp.hibernate.repository.IUserBdRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,5 +30,10 @@ public class UserBdService implements IUserBdService{
         if (repo.findById(id).isPresent())
             repo.deleteById(id);
         // TODO: lançar exception notfound
+    }
+
+    @Override
+    public List<UserBD> getAllUsers() {
+        return (List<UserBD>) repo.findAll();
     }
 }

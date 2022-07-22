@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Optional;
 
 @RestController
@@ -18,13 +19,18 @@ public class UserBdController {
     private IUserBdService service;
 
     @GetMapping("/{id}")
-    public ResponseEntity<UserBD> buscaPorId(@PathVariable int id) {
+    public ResponseEntity<UserBD> getUserById(@PathVariable int id) {
         Optional<UserBD> userFound = service.getUserById(id);
 
         if(userFound.isPresent()) {
             return ResponseEntity.ok(userFound.get());
         }
         return ResponseEntity.notFound().build();
+    }
+
+    @GetMapping("/all")
+    public ResponseEntity<List<UserBD>> getAllUsers() {
+        return ResponseEntity.ok(service.getAllUsers());
     }
 
     @PostMapping
