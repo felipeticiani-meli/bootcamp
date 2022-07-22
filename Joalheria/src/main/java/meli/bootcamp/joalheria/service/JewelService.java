@@ -5,6 +5,9 @@ import meli.bootcamp.joalheria.repository.IJewelRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class JewelService implements IJewelService {
 
@@ -15,5 +18,12 @@ public class JewelService implements IJewelService {
     public Jewel createJewel(Jewel newJewel) {
         if (newJewel.getId() != null) return null;
         return repo.save(newJewel);
+    }
+
+    @Override
+    public List<Jewel> getAllJewels() {
+        List<Jewel> jewels = new ArrayList<>();
+        repo.findAll().forEach(jewels::add);
+        return jewels;
     }
 }
