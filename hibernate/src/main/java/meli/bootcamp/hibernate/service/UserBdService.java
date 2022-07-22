@@ -5,13 +5,15 @@ import meli.bootcamp.hibernate.repository.IUserBdRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
-public class UserBdService {
+public class UserBdService implements IUserBdService{
 
     @Autowired
     private IUserBdRepo repo;
 
-    public UserBD getUserById(int id) {
-        return (UserBD) repo.findById(id).orElse(null);
+    public Optional<UserBD> getUserById(int id) {
+        return repo.findById(id);
     }
 }

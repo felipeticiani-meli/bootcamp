@@ -1,10 +1,12 @@
 package meli.bootcamp.hibernate.controller;
 
 import meli.bootcamp.hibernate.model.UserBD;
-import meli.bootcamp.hibernate.service.UserBdService;
+import meli.bootcamp.hibernate.service.IUserBdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
@@ -12,14 +14,14 @@ import org.springframework.web.bind.annotation.*;
 public class UserBdController {
 
     @Autowired
-    private UserBdService service;
+    private IUserBdService service;
 
     @GetMapping("/{id}")
     public ResponseEntity<UserBD> buscaPorId(@PathVariable int id) {
-        UserBD userFound = service.getUserById(id);
+        Optional<UserBD> userFound = service.getUserById(id);
 
-        if(userFound != null) {
-            return ResponseEntity.ok(userFound);
+        if(userFound.isPresent()) {
+            return ResponseEntity.ok(userFound.get());
         }
         return ResponseEntity.notFound().build();
     }
