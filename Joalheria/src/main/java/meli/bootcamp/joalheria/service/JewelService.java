@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class JewelService implements IJewelService {
@@ -26,4 +27,11 @@ public class JewelService implements IJewelService {
         repo.findAll().forEach(jewels::add);
         return jewels;
     }
+
+    @Override
+    public Optional<Jewel> getById(Long id) {
+        return repo.findById(id);
+    }
+
+
 }

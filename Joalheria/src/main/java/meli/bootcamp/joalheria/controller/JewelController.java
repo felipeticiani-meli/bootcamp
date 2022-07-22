@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/jewelry")
@@ -26,5 +27,13 @@ public class JewelController {
     @GetMapping("/jewels")
     public ResponseEntity<List<Jewel>> getAllJewels() {
         return ResponseEntity.ok(service.getAllJewels());
+    }
+
+    @GetMapping("/jewel")
+    public ResponseEntity<Jewel> getJewelById(@RequestParam Long id) {
+        Optional<Jewel> foundJewel = service.getById(id);
+        if (foundJewel.isPresent())
+            return ResponseEntity.ok(foundJewel.get());
+        return ResponseEntity.notFound().build();
     }
 }
