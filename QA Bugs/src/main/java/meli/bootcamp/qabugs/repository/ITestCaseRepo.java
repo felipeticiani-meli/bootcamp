@@ -12,4 +12,5 @@ public interface ITestCaseRepo extends CrudRepository<TestCase, Long> {
     List<TestCase> findByLastUpdateGreaterThanEqual(LocalDate date);
     List<TestCase> findByTestedTrue();
     List<TestCase> findByPassedTrue();
+    List<TestCase> findByDescriptionContaining(String search);
 }

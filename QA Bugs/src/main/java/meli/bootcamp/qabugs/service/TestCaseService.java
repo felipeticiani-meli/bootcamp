@@ -66,4 +66,9 @@ public class TestCaseService implements ITestCaseService {
     public List<TestCase> getAllPassed() {
         return repo.findByPassedTrue();
     }
+
+    @Override
+    public List<TestCase> getAllByDescription(String search) {
+        return repo.findByDescriptionContaining(search);
+    }
 }

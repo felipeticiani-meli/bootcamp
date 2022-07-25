@@ -15,4 +15,5 @@ public interface ITestCaseService {
     List<TestCase> getByAfterDate(LocalDate date);
     List<TestCase> getAllTested();
     List<TestCase> getAllPassed();
+    List<TestCase> getAllByDescription(String search);
 }
