@@ -42,6 +42,11 @@ public class JewelController {
         return ResponseEntity.notFound().build();
     }
 
+    @GetMapping("/jewels/heaviest")
+    public ResponseEntity<Jewel> getHeaviestJewel() {
+        return ResponseEntity.ok(service.getHeaviestJewel());
+    }
+
     @DeleteMapping("/jewel/delete")
     public ResponseEntity<Void> deleteJewel(@RequestParam Long id) {
         Optional<Jewel> foundJewel = service.getById(id);

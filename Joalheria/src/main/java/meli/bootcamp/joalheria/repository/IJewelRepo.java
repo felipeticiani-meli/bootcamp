@@ -10,6 +10,11 @@ import java.util.List;
 @Repository
 public interface IJewelRepo extends CrudRepository<Jewel, Long> {
 
+    // using JPQL
     @Query(value = "select j from Jewel j order by j.material")
     List<Jewel> getAllOrderedByMaterial();
+
+    // using MySQL (native)
+    @Query(value = "SELECT * FROM jewel ORDER BY weight DESC LIMIT 1", nativeQuery = true)
+    Jewel getHeaviestJewel();
 }

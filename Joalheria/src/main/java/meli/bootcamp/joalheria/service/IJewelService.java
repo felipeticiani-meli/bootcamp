@@ -12,4 +12,5 @@ public interface IJewelService {
     void deleteJewel(Long id);
     Jewel updateJewel(Jewel jewel);
     List<Jewel> getAllOrderedByMaterial();
+    Jewel getHeaviestJewel();
 }

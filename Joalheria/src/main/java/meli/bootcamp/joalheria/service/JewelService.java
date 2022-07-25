@@ -56,5 +56,10 @@ public class JewelService implements IJewelService {
         return jewels;
     }
 
+    @Override
+    public Jewel getHeaviestJewel() {
+        return repo.getHeaviestJewel();
+    }
+
 
 }
