@@ -1,0 +1,36 @@
+package meli.bootcamp.qabugs.controller;
+
+import meli.bootcamp.qabugs.model.TestCase;
+import meli.bootcamp.qabugs.service.ITestCaseService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@RequestMapping("/api/testcases")
+public class TestCaseController {
+
+    @Autowired
+    private ITestCaseService service;
+
+    @PostMapping("/new")
+    public ResponseEntity<TestCase> createTest(@RequestBody TestCase newTest) {
+        if (newTest.getIdCase() != null) {
+            return ResponseEntity.badRequest().build();
+        }
+        return ResponseEntity.status(HttpStatus.CREATED).body(service.createTest(newTest));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<TestCase>> getAllTests() {
+        return ResponseEntity.ok(service.getAllTests());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<TestCase> getById(@PathVariable Long id) {
+        return ResponseEntity.ok(service.getById(id));
+    }
+}
