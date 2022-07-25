@@ -13,5 +13,6 @@ public interface ITestCaseService {
     void deleteTest(Long id);
     void deleteAllTests();
     List<TestCase> getByAfterDate(LocalDate date);
-
+    List<TestCase> getAllTested();
+    List<TestCase> getAllPassed();
 }

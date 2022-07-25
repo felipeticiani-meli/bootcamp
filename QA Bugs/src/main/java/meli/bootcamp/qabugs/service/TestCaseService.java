@@ -56,4 +56,14 @@ public class TestCaseService implements ITestCaseService {
     public List<TestCase> getByAfterDate(LocalDate date) {
         return repo.findByLastUpdateGreaterThanEqual(date);
     }
+
+    @Override
+    public List<TestCase> getAllTested() {
+        return repo.findByTestedTrue();
+    }
+
+    @Override
+    public List<TestCase> getAllPassed() {
+        return repo.findByPassedTrue();
+    }
 }

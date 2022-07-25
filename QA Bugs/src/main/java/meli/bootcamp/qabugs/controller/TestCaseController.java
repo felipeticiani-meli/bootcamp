@@ -37,6 +37,16 @@ public class TestCaseController {
         return ResponseEntity.ok(service.getAllTests());
     }
 
+    @GetMapping("/tested")
+    public ResponseEntity<List<TestCase>> getAllTested() {
+        return ResponseEntity.ok(service.getAllTested());
+    }
+
+    @GetMapping("/passed")
+    public ResponseEntity<List<TestCase>> getAllPassed() {
+        return ResponseEntity.ok(service.getAllPassed());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<TestCase> getById(@PathVariable Long id) {
         return ResponseEntity.ok(service.getById(id));
