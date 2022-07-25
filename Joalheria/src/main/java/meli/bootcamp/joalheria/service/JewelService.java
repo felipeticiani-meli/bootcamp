@@ -49,5 +49,12 @@ public class JewelService implements IJewelService {
         return null; // TODO: throw exception
     }
 
+    @Override
+    public List<Jewel> getAllOrderedByMaterial() {
+        List<Jewel> jewels = new ArrayList<>();
+        repo.getAllOrderedByMaterial().forEach(jewels::add);
+        return jewels;
+    }
+
 
 }

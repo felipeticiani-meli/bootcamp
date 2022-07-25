@@ -29,6 +29,11 @@ public class JewelController {
         return ResponseEntity.ok(service.getAllJewels());
     }
 
+    @GetMapping("/jewels/material")
+    public ResponseEntity<List<Jewel>> getAllOrderedByMaterial() {
+        return ResponseEntity.ok(service.getAllOrderedByMaterial());
+    }
+
     @GetMapping("/jewel")
     public ResponseEntity<Jewel> getJewelById(@RequestParam Long id) {
         Optional<Jewel> foundJewel = service.getById(id);
