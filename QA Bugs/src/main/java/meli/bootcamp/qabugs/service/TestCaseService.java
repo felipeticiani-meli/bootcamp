@@ -5,6 +5,7 @@ import meli.bootcamp.qabugs.repository.ITestCaseRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -44,5 +45,10 @@ public class TestCaseService implements ITestCaseService {
     public void deleteTest(Long id) {
         TestCase foundTest = this.getById(id);
         repo.deleteById(id);
+    }
+
+    @Override
+    public List<TestCase> getByAfterDate(LocalDate date) {
+        return repo.findByLastUpdateGreaterThanEqual(date);
     }
 }

@@ -3,10 +3,12 @@ package meli.bootcamp.qabugs.controller;
 import meli.bootcamp.qabugs.model.TestCase;
 import meli.bootcamp.qabugs.service.ITestCaseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @RestController
@@ -25,7 +27,13 @@ public class TestCaseController {
     }
 
     @GetMapping
-    public ResponseEntity<List<TestCase>> getAllTests() {
+    public ResponseEntity<List<TestCase>> getAllTests(@RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date) {
+        if(date != null) {
+            if (date.isAfter(LocalDate.now())) {
+                return ResponseEntity.badRequest().build();
+            }
+            return ResponseEntity.ok(service.getByAfterDate(date));
+        }
         return ResponseEntity.ok(service.getAllTests());
     }
 
@@ -45,4 +53,5 @@ public class TestCaseController {
         service.deleteTest(id);
         return ResponseEntity.noContent().build();
     }
+
 }
