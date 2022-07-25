@@ -9,4 +9,5 @@ public interface ITestCaseService {
     List<TestCase> getAllTests();
     TestCase getById(Long id);
     TestCase updateTest(TestCase test);
+    void deleteTest(Long id);
 }

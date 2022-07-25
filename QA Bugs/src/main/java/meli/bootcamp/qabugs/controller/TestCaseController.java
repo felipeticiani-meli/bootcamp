@@ -39,4 +39,10 @@ public class TestCaseController {
         test.setIdCase(id);
         return ResponseEntity.ok(service.updateTest(test));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteTest(@PathVariable Long id) {
+        service.deleteTest(id);
+        return ResponseEntity.noContent().build();
+    }
 }

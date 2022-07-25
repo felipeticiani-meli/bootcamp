@@ -39,4 +39,10 @@ public class TestCaseService implements ITestCaseService {
         TestCase foundTest = this.getById(test.getIdCase());
         return repo.save(test);
     }
+
+    @Override
+    public void deleteTest(Long id) {
+        TestCase foundTest = this.getById(id);
+        repo.deleteById(id);
+    }
 }
