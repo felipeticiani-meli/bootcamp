@@ -48,6 +48,11 @@ public class TestCaseService implements ITestCaseService {
     }
 
     @Override
+    public void deleteAllTests() {
+        repo.deleteAll();
+    }
+
+    @Override
     public List<TestCase> getByAfterDate(LocalDate date) {
         return repo.findByLastUpdateGreaterThanEqual(date);
     }

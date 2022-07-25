@@ -11,5 +11,7 @@ public interface ITestCaseService {
     TestCase getById(Long id);
     TestCase updateTest(TestCase test);
     void deleteTest(Long id);
+    void deleteAllTests();
     List<TestCase> getByAfterDate(LocalDate date);
+
 }

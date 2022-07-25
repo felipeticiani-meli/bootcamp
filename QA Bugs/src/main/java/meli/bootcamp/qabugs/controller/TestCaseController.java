@@ -54,4 +54,10 @@ public class TestCaseController {
         return ResponseEntity.noContent().build();
     }
 
+    @DeleteMapping("/delete-all")
+    public ResponseEntity<Void> deleteAllTests() {
+        service.deleteAllTests();
+        return ResponseEntity.noContent().build();
+    }
+
 }
