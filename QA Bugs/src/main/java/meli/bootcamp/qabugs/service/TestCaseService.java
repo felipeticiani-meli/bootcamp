@@ -33,4 +33,10 @@ public class TestCaseService implements ITestCaseService {
         if (test.isEmpty()) return null; // TODO: throw exception
         return test.get();
     }
+
+    @Override
+    public TestCase updateTest(TestCase test) {
+        TestCase foundTest = this.getById(test.getIdCase());
+        return repo.save(test);
+    }
 }

@@ -33,4 +33,10 @@ public class TestCaseController {
     public ResponseEntity<TestCase> getById(@PathVariable Long id) {
         return ResponseEntity.ok(service.getById(id));
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<TestCase> updateTest(@PathVariable Long id, @RequestBody TestCase test) {
+        test.setIdCase(id);
+        return ResponseEntity.ok(service.updateTest(test));
+    }
 }

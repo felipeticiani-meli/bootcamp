@@ -8,4 +8,5 @@ public interface ITestCaseService {
     TestCase createTest(TestCase newTest);
     List<TestCase> getAllTests();
     TestCase getById(Long id);
+    TestCase updateTest(TestCase test);
 }
