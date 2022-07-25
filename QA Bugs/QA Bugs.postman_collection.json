@@ -12,7 +12,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"description\": \"Unit test of repository\",\n    \"tested\": true,\n    \"passed\": true,\n    \"numberOfTries\": 3,\n    \"lastUpdate\": \"2022-07-25\"\n}",
+					"raw": "{\n    \"description\": \"Unit test of services\",\n    \"tested\": false,\n    \"passed\": false,\n    \"numberOfTries\": 3,\n    \"lastUpdate\": \"2022-07-23\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -129,6 +129,83 @@
 						{
 							"key": "date",
 							"value": "2022-07-23"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete all tests",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/testcases/delete-all",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"testcases",
+						"delete-all"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all tested",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/testcases/tested",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"testcases",
+						"tested"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all passed",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/testcases/passed",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"testcases",
+						"passed"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all by description",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseurl}}/testcases?description=repository",
+					"host": [
+						"{{baseurl}}"
+					],
+					"path": [
+						"testcases"
+					],
+					"query": [
+						{
+							"key": "description",
+							"value": "repository"
 						}
 					]
 				}
