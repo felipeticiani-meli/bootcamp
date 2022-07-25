@@ -11,7 +11,7 @@ import java.util.List;
 public interface IJewelRepo extends CrudRepository<Jewel, Long> {
 
     // using JPQL
-    @Query(value = "select j from Jewel j order by j.material")
+    @Query(value = "select j from Jewel j order by j.material.name")
     List<Jewel> getAllOrderedByMaterial();
 
     // using MySQL (native)

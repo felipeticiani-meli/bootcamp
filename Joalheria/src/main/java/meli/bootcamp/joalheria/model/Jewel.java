@@ -2,7 +2,9 @@ package meli.bootcamp.joalheria.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import meli.bootcamp.joalheria.dto.JewelRequestDto;
 
 import javax.persistence.*;
 

@@ -1,5 +1,6 @@
 package meli.bootcamp.joalheria.controller;
 
+import meli.bootcamp.joalheria.dto.JewelRequestDto;
 import meli.bootcamp.joalheria.model.Jewel;
 import meli.bootcamp.joalheria.service.IJewelService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,7 @@ public class JewelController {
     private IJewelService service;
 
     @PostMapping("/jewel/insert")
-    public ResponseEntity<Jewel> createJewel(@RequestBody Jewel newJewel) {
+    public ResponseEntity<Jewel> createJewel(@RequestBody JewelRequestDto newJewel) {
         if (newJewel.getId() != null )
             return ResponseEntity.badRequest().build();
         return ResponseEntity.status(HttpStatus.CREATED).body(service.createJewel(newJewel));

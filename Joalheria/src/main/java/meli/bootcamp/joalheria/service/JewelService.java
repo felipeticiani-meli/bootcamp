@@ -1,5 +1,6 @@
 package meli.bootcamp.joalheria.service;
 
+import meli.bootcamp.joalheria.dto.JewelRequestDto;
 import meli.bootcamp.joalheria.model.Jewel;
 import meli.bootcamp.joalheria.repository.IJewelRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,17 @@ public class JewelService implements IJewelService {
     @Autowired
     private IJewelRepo repo;
 
+    @Autowired
+    private IMaterialService materials;
+
     @Override
-    public Jewel createJewel(Jewel newJewel) {
-        if (newJewel.getId() != null) return null;
+    public Jewel createJewel(JewelRequestDto jewelDto) {
+        if (jewelDto.getId() != null) return null; // TODO: throw exception
+        if (materials.getById(jewelDto.getMaterial()).isEmpty()) return null; // TODO: throw exception
+        Jewel newJewel = new Jewel();
+        newJewel.setCarat(jewelDto.getCarat());
+        newJewel.setWeight(jewelDto.getWeight());
+        newJewel.setMaterial(materials.getById(jewelDto.getMaterial()).get());
         return repo.save(newJewel);
     }
 
