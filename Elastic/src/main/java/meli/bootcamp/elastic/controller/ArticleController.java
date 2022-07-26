@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/article")
 public class ArticleController {
@@ -19,8 +21,18 @@ public class ArticleController {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(newArticle));
     }
 
+    @GetMapping
+    public ResponseEntity<List<Article>> findAll() {
+        return ResponseEntity.ok(service.findAll());
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<Article> findById(@PathVariable Long id) {
         return ResponseEntity.ok(service.findById(id));
+    }
+
+    @GetMapping(params = "title")
+    public ResponseEntity<List<Article>> findByTitle(@RequestParam String title) {
+        return ResponseEntity.ok(service.findByTitle(title));
     }
 }

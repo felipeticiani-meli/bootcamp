@@ -5,6 +5,9 @@ import meli.bootcamp.elastic.repository.IArticleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ArticleService implements IArticleService {
 
@@ -19,5 +22,17 @@ public class ArticleService implements IArticleService {
     @Override
     public Article findById(long id) {
         return repo.findById(id).get();
+    }
+
+    @Override
+    public List<Article> findAll() {
+        List<Article> articles = new ArrayList<>();
+        repo.findAll().forEach(articles::add);
+        return articles;
+    }
+
+    @Override
+    public List<Article> findByTitle(String search) {
+        return repo.findByTitleContaining(search);
     }
 }
