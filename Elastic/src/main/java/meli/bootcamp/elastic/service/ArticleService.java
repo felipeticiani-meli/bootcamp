@@ -26,9 +26,13 @@ public class ArticleService implements IArticleService {
 
     @Override
     public List<Article> findAll() {
+        /*
+        Usando o método de ElasticsearchRepository
         List<Article> articles = new ArrayList<>();
         repo.findAll().forEach(articles::add);
         return articles;
+        */
+        return repo.findAllArticles();
     }
 
     @Override
