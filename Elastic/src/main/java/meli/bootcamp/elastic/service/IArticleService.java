@@ -9,4 +9,5 @@ public interface IArticleService {
     Article findById(long id);
     List<Article> findAll();
     List<Article> findByTitle(String search);
+    List<Article> findByAuthor(String search);
 }

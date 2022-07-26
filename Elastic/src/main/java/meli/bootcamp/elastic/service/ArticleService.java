@@ -35,4 +35,9 @@ public class ArticleService implements IArticleService {
     public List<Article> findByTitle(String search) {
         return repo.findByTitleContaining(search);
     }
+
+    @Override
+    public List<Article> findByAuthor(String search) {
+        return repo.findByAuthors_NameContaining(search);
+    }
 }

@@ -35,4 +35,9 @@ public class ArticleController {
     public ResponseEntity<List<Article>> findByTitle(@RequestParam String title) {
         return ResponseEntity.ok(service.findByTitle(title));
     }
+
+    @GetMapping(params = "author")
+    public ResponseEntity<List<Article>> findByAuthor(@RequestParam String author) {
+        return ResponseEntity.ok(service.findByAuthor(author));
+    }
 }
