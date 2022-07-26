@@ -10,4 +10,5 @@ public interface IArticleService {
     List<Article> findAll();
     List<Article> findByTitle(String search);
     List<Article> findByAuthor(String search);
+    String deleteById(long id);
 }

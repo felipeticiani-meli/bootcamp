@@ -40,4 +40,10 @@ public class ArticleService implements IArticleService {
     public List<Article> findByAuthor(String search) {
         return repo.findByAuthors_NameContaining(search);
     }
+
+    @Override
+    public String deleteById(long id) {
+        repo.deleteById(id);
+        return "Removed!";
+    }
 }
