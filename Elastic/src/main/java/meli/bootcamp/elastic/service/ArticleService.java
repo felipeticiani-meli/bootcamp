@@ -3,9 +3,10 @@ package meli.bootcamp.elastic.service;
 import meli.bootcamp.elastic.model.Article;
 import meli.bootcamp.elastic.repository.IArticleRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -25,19 +26,20 @@ public class ArticleService implements IArticleService {
     }
 
     @Override
-    public List<Article> findAll() {
+    public Page<Article> findAll(Pageable pg) {
         /*
         Usando o método de ElasticsearchRepository
         List<Article> articles = new ArrayList<>();
         repo.findAll().forEach(articles::add);
         return articles;
         */
-        return repo.findAllArticles();
+
+        return repo.findAllArticles(pg);
     }
 
     @Override
-    public List<Article> findByTitle(String search) {
-        return repo.findByTitleContaining(search);
+    public Page<Article> findByTitle(String search, Pageable pg) {
+        return repo.findByTitleContaining(search, pg);
     }
 
     @Override

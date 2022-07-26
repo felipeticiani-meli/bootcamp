@@ -3,6 +3,8 @@ package meli.bootcamp.elastic.controller;
 import meli.bootcamp.elastic.model.Article;
 import meli.bootcamp.elastic.service.ArticleService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +23,10 @@ public class ArticleController {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.save(newArticle));
     }
 
-    @GetMapping
-    public ResponseEntity<List<Article>> findAll() {
-        return ResponseEntity.ok(service.findAll());
+    @GetMapping()
+    public ResponseEntity<Page<Article>> findAll(Pageable pg) {
+        System.out.println(pg.getSort());
+        return ResponseEntity.ok(service.findAll(pg));
     }
 
     @GetMapping("/{id}")
@@ -32,8 +35,8 @@ public class ArticleController {
     }
 
     @GetMapping(params = "title")
-    public ResponseEntity<List<Article>> findByTitle(@RequestParam String title) {
-        return ResponseEntity.ok(service.findByTitle(title));
+    public ResponseEntity<Page<Article>> findByTitle(@RequestParam String title, Pageable pg) {
+        return ResponseEntity.ok(service.findByTitle(title, pg));
     }
 
     @GetMapping(params = "author")

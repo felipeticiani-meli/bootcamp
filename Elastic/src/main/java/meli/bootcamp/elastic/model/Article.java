@@ -19,7 +19,7 @@ public class Article {
     private String id;
 
     // FieldType para setarmos o tipo do campo, se quisermos
-    @Field(type = FieldType.Text)
+    @Field(type = FieldType.Keyword)
     private String title;
 
     // Nested: tipo de campo embutido (vem de outra classe)
